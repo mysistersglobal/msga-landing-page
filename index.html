@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Sisters Global Alliance | Educate. Equip. Empower.</title>
+<meta name="description" content="My Sisters Global Alliance (MSGA) is a Georgia-based 501(c)(3) nonprofit educating, equipping, and empowering women and girls through leadership development, mentorship, and humanitarian outreach worldwide.">
+<style>
+  :root{
+    --navy:#103B64;
+    --navy-dark:#0A2A48;
+    --blue:#175C8D;
+    --gold:#FACF2D;
+    --gold-light:#FDE28A;
+    --orange:#F2A52B;
+    --ivory:#FFFFFF;
+    --champagne:#FBF3D9;
+    --teal:#175C8D;
+    --text:#1C2430;
+    --muted:#5B6472;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--ivory);
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .btn{
+    display:inline-block;
+    padding:14px 32px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all 0.2s ease;
+  }
+  .btn-gold{background:var(--gold);color:var(--navy-dark);}
+  .btn-gold:hover{background:var(--gold-light);}
+  .btn-outline{background:transparent;border-color:var(--ivory);color:var(--ivory);}
+  .btn-outline:hover{background:rgba(255,255,255,0.1);}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:#fff;
+    border-bottom:1px solid var(--champagne);
+    box-shadow:0 1px 8px rgba(16,59,100,0.06);
+  }
+  header .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:12px;padding-bottom:12px;
+  }
+  .logo-mark{display:flex;align-items:center;}
+  .logo-mark img{height:48px;width:auto;display:block;}
+  nav ul{list-style:none;display:flex;gap:32px;}
+  nav a{color:var(--navy);font-size:0.9rem;font-weight:500;}
+  nav a:hover{color:var(--blue);}
+  .nav-cta{display:none;}
+  @media(min-width:720px){.nav-cta{display:block;}}
+  .mobile-toggle{display:none;}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-dark) 100%);
+    color:var(--ivory);
+    padding:96px 0 110px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;right:-120px;top:-120px;
+    width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(23,92,141,0.18) 0%,rgba(23,92,141,0) 70%);
+  }
+  .hero .wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center;}
+  .eyebrow{
+    display:inline-block;color:var(--gold);
+    font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+    font-weight:600;margin-bottom:20px;
+  }
+  .hero h1{font-size:clamp(2.2rem,4.5vw,3.4rem);color:var(--ivory);line-height:1.15;margin-bottom:22px;}
+  .hero p.lead{font-size:1.25rem;color:var(--champagne);max-width:640px;margin:0 auto 36px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;}
+  .hero-logo-wrap{
+    display:inline-block;background:#fff;padding:20px 28px;
+    border-radius:8px;margin-bottom:32px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.28);
+  }
+  .hero-logo-wrap img{display:block;width:min(460px,75vw);height:auto;}
+  .hero-note{margin:20px auto 0;font-size:0.85rem;color:rgba(241,231,210,0.65);max-width:560px;}
+
+  /* Pillars */
+  .pillars{padding:72px 0;background:var(--ivory);}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head .eyebrow{color:var(--teal);}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  .pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;}
+  .pillar-card{
+    background:#fff;border:1px solid var(--champagne);
+    padding:36px 28px;border-radius:4px;
+    border-top:3px solid var(--blue);
+  }
+  .pillar-num{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:0.85rem;color:var(--gold);
+    letter-spacing:0.1em;font-weight:600;margin-bottom:12px;display:block;
+  }
+  .pillar-card h3{font-size:1.3rem;margin-bottom:12px;}
+  .pillar-card p{color:var(--muted);font-size:0.96rem;}
+
+  /* Mission */
+  .mission{background:var(--navy);color:var(--ivory);padding:80px 0;}
+  .mission .wrap{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:860px){.mission .wrap{grid-template-columns:1fr 1fr;align-items:center;}}
+  .mission h2{color:var(--ivory);font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:20px;}
+  .mission p{color:var(--champagne);font-size:1.02rem;}
+  .mission-figure{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(23,92,141,0.35);
+    padding:32px;border-radius:4px;
+  }
+  .stat-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(23,92,141,0.2);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-label{color:var(--champagne);font-size:0.92rem;}
+  .stat-value{color:var(--gold);font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+
+  /* Programs */
+  .programs{padding:80px 0;background:var(--champagne);}
+  .program-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:8px;}
+  .program-item{
+    background:var(--ivory);padding:22px 24px;border-radius:4px;
+    border-left:3px solid var(--teal);font-weight:500;font-size:0.98rem;color:var(--navy);
+  }
+
+  /* Founder */
+  .founder{padding:88px 0;background:var(--ivory);}
+  .founder .wrap{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+  @media(min-width:860px){.founder .wrap{grid-template-columns:280px 1fr;align-items:start;}}
+  .founder-photo{
+    width:220px;height:220px;border-radius:50%;
+    border:4px solid var(--blue);
+    margin:0 auto;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(16,59,100,0.18);
+  }
+  .founder-photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .founder-copy .eyebrow{color:var(--blue);}
+  .founder-copy h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:20px;}
+  .founder-copy p{font-size:1.02rem;color:var(--text);line-height:1.75;margin-bottom:18px;}
+  .founder-welcome{font-weight:700;color:var(--navy);font-size:1.15rem;}
+  .founder-signature{margin-top:28px;}
+  .founder-name{font-weight:700;color:var(--navy);}
+  .founder-title{color:var(--muted);font-size:0.9rem;}
+
+  /* Leadership */
+  .leadership{padding:72px 0;background:#fff;border-top:1px solid var(--champagne);border-bottom:1px solid var(--champagne);}
+  .board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:8px;}
+  .board-card{text-align:center;}
+  .board-avatar{
+    width:64px;height:64px;border-radius:50%;background:var(--champagne);
+    margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
+    color:var(--navy);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;
+  }
+  .board-name{font-weight:600;font-size:0.95rem;color:var(--navy);}
+  .board-role{font-size:0.82rem;color:var(--muted);}
+
+  /* Trust / Status */
+  .trust{padding:56px 0;background:var(--teal);color:var(--ivory);}
+  .trust .wrap{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;}
+  .trust-copy{max-width:640px;}
+  .trust h3{color:var(--ivory);font-size:1.3rem;margin-bottom:10px;}
+  .trust p{color:rgba(251,248,241,0.85);font-size:0.95rem;}
+  .badge-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .badge{
+    border:1px solid rgba(251,248,241,0.4);padding:8px 16px;border-radius:999px;
+    font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ivory);
+  }
+
+  /* Email capture */
+  .join{padding:96px 0;background:var(--navy-dark);color:var(--ivory);text-align:center;}
+  .join h2{color:var(--ivory);font-size:clamp(1.8rem,3.5vw,2.4rem);margin-bottom:16px;}
+  .join p{color:var(--champagne);max-width:560px;margin:0 auto 36px;}
+  form.join-form{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:480px;margin:0 auto;}
+  form.join-form input[type="email"]{
+    flex:1;min-width:220px;padding:14px 18px;border-radius:2px;border:1px solid var(--champagne);
+    background:var(--ivory);color:var(--navy);font-size:0.95rem;
+  }
+  .join-disclaimer{margin-top:16px;font-size:0.8rem;color:rgba(241,231,210,0.6);}
+
+  /* Footer */
+  footer{background:var(--navy-dark);color:rgba(251,248,241,0.7);padding:48px 0 32px;border-top:1px solid rgba(23,92,141,0.2);}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;}
+  footer h4{color:var(--ivory);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:1rem;margin-bottom:12px;}
+  footer p, footer a{font-size:0.85rem;color:rgba(251,248,241,0.6);}
+  footer a:hover{color:var(--gold);}
+  .footer-bottom{
+    max-width:1120px;margin:32px auto 0;padding:20px 24px 0;
+    border-top:1px solid rgba(23,92,141,0.15);
+    font-size:0.78rem;color:rgba(251,248,241,0.45);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo-mark"><img src="assets/logo-blue.png" alt="My Sisters Global Alliance — Educate, Equip, Empower"></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></li>
+      </ul>
+    </nav>
+    <a href="#join" class="btn btn-gold nav-cta">Join the Alliance</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="sr-only">My Sisters Global Alliance — Educate, Equip, Empower Women and Girls Worldwide</h1>
+      <span class="eyebrow">Georgia Nonprofit &middot; 501(c)(3) Application in Progress</span>
+      <div class="hero-logo-wrap">
+        <img src="assets/logo-blue.png" alt="My Sisters Global Alliance logo">
+      </div>
+      <p class="lead">My Sisters Global Alliance is building a global community that develops women and girls into confident leaders — through mentorship, education, and hands-on humanitarian outreach.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn btn-gold">Join the Alliance</a>
+        <a href="#mission" class="btn btn-outline">Learn Our Mission</a>
+      </div>
+      <p class="hero-note">We're currently building our founding community ahead of our 501(c)(3) determination. Join our list to be first to know when giving opens.</p>
+    </div>
+  </section>
+
+  <section class="pillars" id="pillars">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Our Approach</span>
+        <h2>Three commitments, one alliance</h2>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <span class="pillar-num">01</span>
+          <h3>Educate</h3>
+          <p>We provide access to education and knowledge-building that opens doors — from leadership training to practical life skills.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">02</span>
+          <h3>Equip</h3>
+          <p>We equip women and girls with mentorship, workforce readiness, and tools to build sustainable futures for themselves and their families.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">03</span>
+          <h3>Empower</h3>
+          <p>We empower our sisters to lead — in their communities, their careers, and their advocacy — locally, nationally, and internationally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="founder" id="founder">
+    <div class="wrap">
+      <div class="founder-photo"><img src="assets/founder-blue.jpg" alt="Romona Armon, Founder, President &amp; CEO of My Sisters Global Alliance"></div>
+      <div class="founder-copy">
+        <span class="eyebrow">A Letter From Our Founder</span>
+        <h2>Welcome to the Alliance</h2>
+        <p>My name is Romona Armon, and I am the Founder &amp; CEO of My Sisters Global Alliance.</p>
+        <p>For many years, I have had the privilege of walking alongside women and girls during some of life's most difficult and most meaningful moments. I've learned that sometimes what changes a life isn't just a program&mdash;it's knowing that someone truly cares and is willing to show up.</p>
+        <p>That belief is what inspired My Sisters Global Alliance.</p>
+        <p>Our mission is to educate, equip, and empower women and girls by providing leadership development, mentorship, practical resources, community support, advocacy, and opportunities that create lasting impact.</p>
+        <p>My vision is simple: to build a global alliance where women know they are never alone. No matter where they are in the world, they have a community that believes in them, stands beside them, and is committed to helping them thrive.</p>
+        <p>Thank you for joining us as we begin this journey together.</p>
+        <p class="founder-welcome">Welcome to the Alliance.</p>
+        <div class="founder-signature">
+          <p class="founder-name">Romona Armon</p>
+          <p class="founder-title">Founder &amp; CEO, My Sisters Global Alliance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission" id="mission">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Our Mission</span>
+        <h2>Organized to educate, equip, and empower.</h2>
+        <p>To educate, equip, and empower women and girls by providing preventative education, leadership development, humanitarian support, and meaningful connections that strengthen individuals, families, and communities around the world.</p>
+      </div>
+      <div class="mission-figure">
+        <div class="stat-row">
+          <span class="stat-label">Organized in</span>
+          <span class="stat-value">Georgia</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Structure</span>
+          <span class="stat-value">Nonprofit Corporation</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Tax-Exempt Status</span>
+          <span class="stat-value">501(c)(3) In Progress</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Reach</span>
+          <span class="stat-value">Local &middot; National &middot; Global</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="programs" id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Where We Focus</span>
+        <h2>Programs built around real needs</h2>
+      </div>
+      <div class="program-list">
+        <div class="program-item">Leadership Development</div>
+        <div class="program-item">Mentorship</div>
+        <div class="program-item">Education Access</div>
+        <div class="program-item">Humanitarian Outreach</div>
+        <div class="program-item">Community Engagement</div>
+        <div class="program-item">Workforce Development</div>
+        <div class="program-item">Advocacy Initiatives</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="leadership" id="leadership">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Governance</span>
+        <h2>Led by a committed board</h2>
+      </div>
+      <div class="board-grid">
+        <div class="board-card">
+          <div class="board-avatar">RA</div>
+          <div class="board-name">Romona Armon</div>
+          <div class="board-role">Founder, President &amp; CEO</div>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar">SL</div>
+          <div class="board-name">Shelia Lowe</div>
+          <div class="board-role">Vice President</div>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar">JW</div>
+          <div class="board-name">Jaina Washington</div>
+          <div class="board-role">Chief Operating Officer</div>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar">LP</div>
+          <div class="board-name">Lachey Pendleton</div>
+          <div class="board-role">Chief Financial Officer</div>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar">NY</div>
+          <div class="board-name">Nylia Young</div>
+          <div class="board-role">Secretary</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="trust-copy">
+        <h3>Built for accountability from day one</h3>
+        <p>Formed under the Georgia Nonprofit Corporation Code with adopted bylaws, a conflict-of-interest policy, and an active board. Our 501(c)(3) federal determination is in progress with the IRS.</p>
+      </div>
+      <div class="badge-row">
+        <span class="badge">Georgia Incorporated</span>
+        <span class="badge">Board Governed</span>
+        <span class="badge">501(c)(3) Pending</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="wrap">
+      <h2>Join the Alliance</h2>
+      <p>Be part of our founding community. We'll send occasional updates on our programs, our 501(c)(3) progress, and how you'll be able to get involved as we grow.</p>
+      <form class="join-form" action="https://010358a6.sibforms.com/serve/MUIFAFCvTWm0oBS8esVmNOSDlYlNRyazc4vAMdSwe3n7t2Dzoi2fDwtbjbRTuZ5_jSltEl6xpi_X4lW-is5yrOlQ7pXVoyKnjSiz6t4T89GQf1pi4_OTFNw2s8Ry9Ljnu-kOV9V6pPmyNflTzi7dm22QKo1eocEPAW0wZpW_CbcCz_VLFJPlDK3jxDIj_m6DyHQdVOlCVnf3Xsw5Og==" method="POST" data-type="subscription">
+        <label class="sr-only" for="EMAIL">Email address</label>
+        <input class="input" type="email" id="EMAIL" name="EMAIL" placeholder="you@email.com" autocomplete="off" required>
+        <input type="text" name="email_address_check" value="" style="display:none !important;" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="locale" value="en">
+        <button type="submit" class="btn btn-gold">Join the Alliance</button>
+      </form>
+      <p class="join-disclaimer">We do not currently accept donations while our 501(c)(3) determination is pending. No spam — unsubscribe anytime.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>My Sisters Global Alliance, Inc.</h4>
+      <p>A Georgia nonprofit corporation</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <p><a href="#mission">Mission</a></p>
+      <p><a href="#programs">Programs</a></p>
+      <p><a href="#leadership">Leadership</a></p>
+      <p><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></p>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <p><a href="mailto:info@mysistersglobal.org">info@mysistersglobal.org</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 My Sisters Global Alliance, Inc. All rights reserved.</span>
+    <span>A Georgia nonprofit corporation &middot; 501(c)(3) application in progress</span>
+  </div>
+</footer>
+
+</body>
+</html>
