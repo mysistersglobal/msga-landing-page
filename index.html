@@ -65,15 +65,37 @@
   header .wrap{
     display:flex;align-items:center;justify-content:space-between;
     padding-top:12px;padding-bottom:12px;
+    position:relative;
   }
-  .logo-mark{display:flex;align-items:center;}
-  .logo-mark img{height:48px;width:auto;display:block;}
-  nav ul{list-style:none;display:flex;gap:32px;}
+  .logo-mark{display:flex;align-items:center;flex-shrink:0;}
+  .logo-mark img{height:44px;width:auto;display:block;}
+  nav ul{list-style:none;}
   nav a{color:var(--navy);font-size:0.9rem;font-weight:500;}
   nav a:hover{color:var(--blue);}
   .nav-cta{display:none;}
-  @media(min-width:720px){.nav-cta{display:block;}}
-  .mobile-toggle{display:none;}
+  .mobile-toggle{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:40px;height:40px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0;
+  }
+  .mobile-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:1px;}
+  @media(max-width:719px){
+    nav{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:#fff;border-bottom:1px solid var(--champagne);
+      box-shadow:0 8px 20px rgba(16,59,100,0.12);
+    }
+    nav.open{display:block;}
+    nav ul{display:flex;flex-direction:column;padding:4px 24px 12px;}
+    nav ul li{border-top:1px solid var(--champagne);}
+    nav ul li:first-child{border-top:none;}
+    nav ul li a{display:block;padding:14px 0;}
+  }
+  @media(min-width:720px){
+    .mobile-toggle{display:none;}
+    .nav-cta{display:block;}
+    nav ul{display:flex;gap:28px;}
+  }
 
   /* Hero */
   .hero{
@@ -224,18 +246,39 @@
 <header>
   <div class="wrap">
     <a href="#top" class="logo-mark"><img src="assets/logo-blue.png" alt="My Sisters Global Alliance — Educate, Equip, Empower"></a>
-    <nav aria-label="Primary">
+    <button type="button" class="mobile-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Primary" id="primaryNav">
       <ul>
         <li><a href="#mission">Mission</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#founder">Founder</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></li>
+        <li><a href="#join">Join the Alliance</a></li>
       </ul>
     </nav>
     <a href="#join" class="btn btn-gold nav-cta">Join the Alliance</a>
   </div>
 </header>
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('primaryNav');
+    if(!toggle || !nav) return;
+    toggle.addEventListener('click', function(){
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 
 <main id="top">
 
@@ -372,7 +415,7 @@
         </div>
         <div class="board-card">
           <div class="board-avatar">LP</div>
-          <div class="board-name">Lachey Pendleton</div>
+          <div class="board-name">LaChey Pendleton</div>
           <div class="board-role">Chief Financial Officer</div>
         </div>
         <div class="board-card">
