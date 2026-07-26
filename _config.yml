@@ -1,0 +1,19 @@
+title: MySGA
+description: "MySGA — My Sisters Global Alliance — is a Georgia nonprofit pursuing federal tax-exempt status, educating, equipping, and empowering women and girls through leadership development, mentorship, and humanitarian outreach worldwide."
+url: "https://mysistersglobal.org"
+baseurl: ""
+
+# GitHub Pages builds with the github-pages gem by default, which already
+# includes this plugin set. Listed explicitly for clarity / local builds.
+plugins:
+  - jekyll-relative-links
+
+# Markdown isn't used for page bodies (pages are authored as HTML with
+# front matter), but kramdown is GitHub Pages' default processor.
+markdown: kramdown
+
+# Files/dirs Jekyll should not try to process or copy into _site.
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
