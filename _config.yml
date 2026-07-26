@@ -7,6 +7,7 @@ baseurl: ""
 # includes this plugin set. Listed explicitly for clarity / local builds.
 plugins:
   - jekyll-relative-links
+  - jekyll-sitemap
 
 # Markdown isn't used for page bodies (pages are authored as HTML with
 # front matter), but kramdown is GitHub Pages' default processor.
