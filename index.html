@@ -147,6 +147,7 @@
 
   /* Section scaffolding */
   section{position:relative;}
+  section[id]{scroll-margin-top:88px;}
   .section-head{max-width:680px;margin-bottom:44px;}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
   .eyebrow{
@@ -203,13 +204,24 @@
   .hero-visual{position:relative;display:flex;justify-content:center;}
   .hero-visual-card{
     position:relative;width:100%;max-width:400px;
-    background:linear-gradient(150deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02));
+    background:
+      radial-gradient(circle,rgba(255,255,255,0.16) 1.5px,transparent 1.5px) 0 0/22px 22px,
+      linear-gradient(150deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02));
     border:1px solid rgba(255,255,255,0.16);
     border-radius:var(--radius-lg);
     padding:36px 30px 84px;
     text-align:center;
     backdrop-filter:blur(2px);
+    overflow:hidden;
   }
+  .hero-status-badge{
+    position:absolute;top:18px;right:18px;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(8,33,73,0.55);border:1px solid rgba(255,255,255,0.3);
+    color:var(--champagne);font-size:0.68rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px);
+  }
+  .hero-status-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;box-shadow:0 0 0 3px rgba(254,195,56,0.25);}
   .hero-visual-logo{
     display:inline-flex;align-items:center;justify-content:center;
     width:120px;height:120px;border-radius:50%;background:#fff;
@@ -262,7 +274,11 @@
   .impact-card:nth-child(2){border-top-color:var(--blue);}
   .impact-card:nth-child(3){border-top-color:var(--orange);}
   .impact-card:nth-child(4){border-top-color:var(--navy);}
-  .impact-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+  .impact-card:hover{transform:translateY(-6px) scale(1.015);box-shadow:var(--shadow-md);}
+  .impact-icon{width:30px;height:30px;margin:0 auto 10px;color:var(--gold);}
+  .impact-card:nth-child(2) .impact-icon{color:var(--blue);}
+  .impact-card:nth-child(3) .impact-icon{color:var(--orange);}
+  .impact-card:nth-child(4) .impact-icon{color:var(--navy);}
   .stat-number{display:block;font-size:clamp(2.1rem,5vw,3rem);font-weight:800;color:var(--navy);line-height:1;}
   .stat-caption{display:block;margin-top:10px;font-size:0.88rem;color:var(--muted);font-weight:600;}
   .impact-footnote{margin-top:32px;font-size:0.85rem;color:var(--muted);text-align:center;}
@@ -286,14 +302,24 @@
 
   /* Programs */
   .programs{padding:88px 0;background:var(--champagne);}
-  .program-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:8px;}
+  .program-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:8px;}
   .program-item{
-    background:var(--ivory);padding:24px 24px;border-radius:var(--radius-md);
-    border-left:4px solid var(--teal);font-weight:600;font-size:0.98rem;color:var(--navy);
+    background:var(--ivory);padding:26px 24px;border-radius:var(--radius-md);
+    border-left:4px solid var(--teal);
     box-shadow:var(--shadow-sm);
     transition:transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
+    display:flex;flex-direction:column;gap:12px;
   }
   .program-item:hover{transform:translateY(-4px) translateX(2px);box-shadow:var(--shadow-md);border-color:var(--orange);}
+  .program-tag{
+    align-self:flex-start;background:rgba(44,105,177,0.1);color:var(--blue);
+    font-size:0.7rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;
+  }
+  .program-item h3{font-size:1.05rem;color:var(--navy);font-weight:700;}
+  .program-item p{font-size:0.9rem;color:var(--muted);line-height:1.55;flex-grow:1;}
+  .program-link{font-size:0.82rem;font-weight:700;color:var(--orange);text-decoration:underline;text-underline-offset:3px;align-self:flex-start;}
+  .program-link:hover{color:var(--navy);}
   .programs-cta{margin-top:36px;text-align:center;font-size:0.95rem;color:var(--muted);}
   .programs-cta a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
 
@@ -404,6 +430,13 @@
     background:var(--ivory);color:var(--navy);font-size:0.95rem;transition:box-shadow .2s var(--ease);
   }
   form.join-form input[type="email"]:focus{outline:none;box-shadow:0 0 0 3px rgba(254,195,56,0.5);}
+  form.join-form input[type="email"].has-error{box-shadow:0 0 0 3px rgba(205,120,23,0.55);}
+  .form-error{
+    flex-basis:100%;display:none;color:var(--gold-light);font-size:0.82rem;font-weight:600;
+    text-align:left;margin-top:-4px;
+  }
+  .form-error.visible{display:block;}
+  .btn[disabled]{opacity:0.75;cursor:progress;pointer-events:none;}
   .join-disclaimer{margin-top:18px;font-size:0.8rem;color:rgba(241,231,210,0.65);}
 
   /* Footer */
@@ -461,6 +494,54 @@
       }
     });
   })();
+
+  // Newsletter signup: client-side validation only.
+  // Intentionally does NOT intercept/fake the actual submission or show a
+  // fabricated "success" message — this form posts to a real, live Brevo
+  // list (see form action), and Brevo's own hosted page confirms signup
+  // after a valid submit. Faking a success state here would risk making
+  // the button look like it works while silently dropping real signups.
+  (function(){
+    var form = document.querySelector('form.join-form');
+    if(!form) return;
+    var emailInput = document.getElementById('EMAIL');
+    var errorEl = document.getElementById('emailError');
+    var submitBtn = document.getElementById('joinSubmitBtn');
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function showError(msg){
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+      emailInput.classList.add('has-error');
+    }
+    function clearError(){
+      errorEl.classList.remove('visible');
+      emailInput.classList.remove('has-error');
+    }
+
+    emailInput.addEventListener('input', clearError);
+
+    form.addEventListener('submit', function(e){
+      var value = (emailInput.value || '').trim();
+      if(!value){
+        e.preventDefault();
+        showError('Please enter your email address.');
+        emailInput.focus();
+        return;
+      }
+      if(!emailPattern.test(value)){
+        e.preventDefault();
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+      clearError();
+      // Valid: let the form submit normally to Brevo. Give the button a
+      // brief "in progress" state for feedback while the page navigates.
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.textContent = 'Joining…';
+    });
+  })();
 </script>
 
 <main id="top">
@@ -472,7 +553,7 @@
           <div class="eyebrow-row">
             <span class="eyebrow">Georgia Nonprofit &middot; 501(c)(3) Application in Progress</span>
           </div>
-          <h1>Educating, Equipping &amp; Empowering <em>Women and Girls</em> Worldwide to Lead</h1>
+          <h1>Educate. Equip. Empower.<br><em>Women and Girls</em> to Lead — Worldwide.</h1>
           <p class="lead">My Sisters Global Alliance builds confident leaders through mentorship, leadership development, education access, and hands-on humanitarian outreach — starting in Georgia and reaching around the world.</p>
           <div class="hero-actions">
             <a href="#support" class="btn btn-gold">Support Our Mission</a>
@@ -482,6 +563,7 @@
         </div>
         <div class="hero-visual">
           <div class="hero-visual-card">
+            <span class="hero-status-badge"><span class="dot"></span>501(c)(3) Pending</span>
             <div class="hero-visual-logo">
               <img src="assets/logo-blue.png" alt="My Sisters Global Alliance logo">
             </div>
@@ -540,18 +622,22 @@
       </div>
       <div class="impact-grid">
         <div class="impact-card">
+          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
           <span class="stat-number">2016</span>
           <span class="stat-caption">Our Legacy Rooted In</span>
         </div>
         <div class="impact-card">
+          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18"></path></svg>
           <span class="stat-number">3</span>
           <span class="stat-caption">Core Pillars — Educate, Equip, Empower</span>
         </div>
         <div class="impact-card">
+          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4"></path><path d="M9 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"></path><path d="M13 9h4M13 13h4M13 17h4"></path></svg>
           <span class="stat-number">7</span>
           <span class="stat-caption">Programs in Development</span>
         </div>
         <div class="impact-card">
+          <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           <span class="stat-number">5</span>
           <span class="stat-caption">Founding Board Members</span>
         </div>
@@ -595,13 +681,48 @@
         <h2>Programs built around real needs</h2>
       </div>
       <div class="program-list">
-        <div class="program-item">Leadership Development</div>
-        <div class="program-item">Mentorship</div>
-        <div class="program-item">Education Access</div>
-        <div class="program-item">Humanitarian Outreach</div>
-        <div class="program-item">Community Engagement</div>
-        <div class="program-item">Workforce Development</div>
-        <div class="program-item">Advocacy Initiatives</div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Equip</span>
+          <h3>Leadership Development</h3>
+          <p>Training and coaching designed to build confident, capable leaders in every stage of life.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Leadership%20Development">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Equip</span>
+          <h3>Mentorship</h3>
+          <p>Connecting women and girls with trusted relationships that offer guidance, accountability, and encouragement.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Mentorship">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Educate</span>
+          <h3>Education Access</h3>
+          <p>Removing barriers to learning through resources, scholarships pathways, and academic support.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Education%20Access">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Empower</span>
+          <h3>Humanitarian Outreach</h3>
+          <p>Disaster relief, poverty alleviation, and hands-on support for families in crisis, at home and abroad.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Humanitarian%20Outreach">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Empower</span>
+          <h3>Community Engagement</h3>
+          <p>Building local circles of support so no woman has to face life's hardest moments alone.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Community%20Engagement">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Equip</span>
+          <h3>Workforce Development</h3>
+          <p>Career readiness, job skills, and financial capability training to build sustainable futures.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Workforce%20Development">Ask about this &rarr;</a>
+        </div>
+        <div class="program-item">
+          <span class="program-tag">Pillar: Empower</span>
+          <h3>Advocacy Initiatives</h3>
+          <p>Amplifying the voices of women and girls and equipping them to advocate for themselves and each other.</p>
+          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Advocacy%20Initiatives">Ask about this &rarr;</a>
+        </div>
       </div>
       <p class="programs-cta">Not sure where to start, or want to be connected as programs launch? <a href="mailto:info@mysistersglobal.org">Reach out to our team</a>.</p>
     </div>
@@ -744,9 +865,10 @@
       <form class="join-form" action="https://010358a6.sibforms.com/serve/MUIFAFCvTWm0oBS8esVmNOSDlYlNRyazc4vAMdSwe3n7t2Dzoi2fDwtbjbRTuZ5_jSltEl6xpi_X4lW-is5yrOlQ7pXVoyKnjSiz6t4T89GQf1pi4_OTFNw2s8Ry9Ljnu-kOV9V6pPmyNflTzi7dm22QKo1eocEPAW0wZpW_CbcCz_VLFJPlDK3jxDIj_m6DyHQdVOlCVnf3Xsw5Og==" method="POST" data-type="subscription">
         <label class="sr-only" for="EMAIL">Email address</label>
         <input class="input" type="email" id="EMAIL" name="EMAIL" placeholder="you@email.com" autocomplete="off" required>
+        <span class="form-error" id="emailError" role="alert">Please enter a valid email address.</span>
         <input type="text" name="email_address_check" value="" style="display:none !important;" tabindex="-1" autocomplete="off">
         <input type="hidden" name="locale" value="en">
-        <button type="submit" class="btn btn-gold">Join the Alliance</button>
+        <button type="submit" class="btn btn-gold" id="joinSubmitBtn">Join the Alliance</button>
       </form>
       <p class="join-disclaimer">We do not currently accept donations while our 501(c)(3) determination is pending. No spam — unsubscribe anytime.</p>
     </div>
