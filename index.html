@@ -1,577 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Sisters Global Alliance | Educate. Equip. Empower.</title>
-<meta name="description" content="My Sisters Global Alliance (MSGA) is a Georgia-based 501(c)(3) nonprofit educating, equipping, and empowering women and girls through leadership development, mentorship, and humanitarian outreach worldwide.">
-<meta name="theme-color" content="#083E7D">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  /*
-    Brand palette + type sourced from the official
-    "My Sisters Global Alliance Style Guide" (SinVista Creations).
-    Colors: #cd7817 / #2c69b1 / #083e7d / #fec338 / #082149
-    Fonts: Montserrat Bold (headings/UI), Al Fresco (signature accent - licensed, see note below).
-  */
-  :root{
-    --navy:#083E7D;
-    --navy-dark:#082149;
-    --blue:#2C69B1;
-    --gold:#FEC338;
-    --gold-light:#FEDB88;
-    --orange:#CD7817;
-    --ivory:#FFFFFF;
-    --champagne:#FBF3D9;
-    --teal:#2C69B1;
-    --text:#1C2430;
-    --muted:#4B5563;
-    --font-base:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;
-    --font-accent:'Al Fresco','Brush Script MT',cursive;
-    --radius-sm:6px;
-    --radius-md:12px;
-    --radius-lg:24px;
-    --shadow-sm:0 2px 10px rgba(8,33,73,0.08);
-    --shadow-md:0 12px 28px rgba(8,33,73,0.14);
-    --shadow-lg:0 24px 60px rgba(8,33,73,0.22);
-    --ease:cubic-bezier(.2,.7,.3,1);
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--font-base);
-    color:var(--text);
-    background:var(--ivory);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.display{
-    font-family:var(--font-base);
-    font-weight:800;
-    color:var(--navy);
-    line-height:1.2;
-  }
-  img{max-width:100%;}
-  .sr-only{
-    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
-  }
-  .skip-link{
-    position:absolute;left:12px;top:-60px;background:var(--gold);color:var(--navy-dark);
-    padding:10px 18px;border-radius:var(--radius-sm);font-weight:700;z-index:200;
-    transition:top .2s var(--ease);
-  }
-  .skip-link:focus{top:12px;}
-  a{color:inherit;text-decoration:none;}
-  a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
-
-  /* Buttons */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:16px 34px;
-    border-radius:var(--radius-sm);
-    font-weight:700;
-    font-size:0.95rem;
-    letter-spacing:0.02em;
-    cursor:pointer;
-    border:2px solid transparent;
-    transition:transform .2s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease), color .2s var(--ease);
-    white-space:nowrap;
-  }
-  .btn-gold{background:var(--gold);color:var(--navy-dark);box-shadow:var(--shadow-sm);}
-  .btn-gold:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-md);}
-  .btn-gold:active{transform:translateY(-1px);}
-  .btn-outline{background:transparent;border-color:rgba(255,255,255,0.7);color:var(--ivory);}
-  .btn-outline:hover{background:rgba(255,255,255,0.12);border-color:#fff;transform:translateY(-3px);}
-  .btn-ghost{background:transparent;border-color:var(--navy);color:var(--navy);}
-  .btn-ghost:hover{background:var(--navy);color:#fff;transform:translateY(-3px);box-shadow:var(--shadow-md);}
-  .btn-sm{padding:10px 20px;font-size:0.82rem;border-radius:999px;}
-
-  /* Header */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,0.96);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--champagne);
-    box-shadow:0 1px 8px rgba(16,59,100,0.06);
-  }
-  header .wrap{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-top:12px;padding-bottom:12px;
-    position:relative;
-  }
-  .logo-mark{display:flex;align-items:center;flex-shrink:0;}
-  .logo-mark img{height:44px;width:auto;display:block;}
-  nav ul{list-style:none;display:flex;align-items:center;}
-  nav a{color:var(--navy);font-size:0.9rem;font-weight:600;padding:8px 2px;position:relative;}
-  nav ul li:not(.nav-btn-item) a::after{
-    content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--gold);
-    transition:right .2s var(--ease);
-  }
-  nav ul li:not(.nav-btn-item) a:hover::after{right:0;}
-  nav a:hover{color:var(--blue);}
-  .nav-btn-item{margin-left:6px;}
-  .mobile-toggle{
-    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
-    width:40px;height:40px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0;
-  }
-  .mobile-toggle span{display:block;width:22px;height:2px;background:var(--navy);border-radius:1px;transition:transform .2s var(--ease), opacity .2s var(--ease);}
-  @media(max-width:899px){
-    nav{
-      display:none;
-      position:absolute;top:100%;left:0;right:0;
-      background:#fff;border-bottom:1px solid var(--champagne);
-      box-shadow:0 8px 20px rgba(16,59,100,0.12);
-    }
-    nav.open{display:block;}
-    nav ul{display:flex;flex-direction:column;align-items:stretch;padding:4px 24px 20px;}
-    nav ul li{border-top:1px solid var(--champagne);}
-    nav ul li:first-child{border-top:none;}
-    nav ul li a{display:block;padding:14px 0;}
-    .nav-btn-item{margin-left:0;padding-top:12px;}
-    .nav-btn-item a{display:inline-flex;padding:12px 24px;}
-    nav ul li.nav-btn-item::after{display:none;}
-  }
-  @media(min-width:900px){
-    .mobile-toggle{display:none;}
-    nav ul{gap:26px;}
-  }
-  @media(min-width:900px) and (max-width:1150px){
-    nav ul{gap:16px;}
-    nav a{font-size:0.83rem;}
-    .btn-sm{padding:9px 16px;font-size:0.76rem;}
-  }
-
-  /* Section scaffolding */
-  section{position:relative;}
-  section[id]{scroll-margin-top:88px;}
-  .section-head{max-width:680px;margin-bottom:44px;}
-  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
-  .eyebrow{
-    display:inline-block;color:var(--gold);
-    font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;
-    font-weight:700;
-  }
-  .section-head .eyebrow{color:var(--blue);}
-  .accent-bar{width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--orange));margin:14px 0 18px;}
-  .section-head.center .accent-bar{margin-left:auto;margin-right:auto;}
-  .section-head h2{font-size:clamp(1.7rem,3vw,2.4rem);}
-  .section-head p{color:var(--muted);font-size:1.02rem;margin-top:14px;}
-
-  .wave-divider{display:block;width:100%;height:64px;margin-top:-2px;}
-  .wave-divider svg{display:block;width:100%;height:100%;}
-
-  /* Hero */
-  .hero{
-    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-dark) 100%);
-    color:var(--ivory);
-    padding:80px 0 0;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::after{
-    content:"";
-    position:absolute;right:-140px;top:-140px;
-    width:460px;height:460px;border-radius:50%;
-    background:radial-gradient(circle,rgba(254,195,56,0.16) 0%,rgba(254,195,56,0) 70%);
-  }
-  .hero::before{
-    content:"";
-    position:absolute;left:-160px;bottom:-160px;
-    width:420px;height:420px;border-radius:50%;
-    background:radial-gradient(circle,rgba(44,105,177,0.28) 0%,rgba(44,105,177,0) 70%);
-  }
-  .hero .wrap{position:relative;z-index:1;padding-bottom:72px;}
-  .hero-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:center;text-align:center;}
-  @media(min-width:960px){
-    .hero-grid{grid-template-columns:1.05fr 0.95fr;text-align:left;gap:56px;}
-    .hero-actions{justify-content:flex-start;}
-    .hero-copy .eyebrow-row{justify-content:flex-start;}
-    .hero p.lead{margin-left:0;margin-right:0;}
-  }
-  .eyebrow-row{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
-  .hero .eyebrow{color:var(--gold);}
-  .hero h1{font-size:clamp(2.15rem,4.6vw,3.4rem);color:var(--ivory);line-height:1.14;margin-bottom:20px;letter-spacing:-0.01em;}
-  .hero h1 em{font-style:normal;color:var(--gold);}
-  .hero p.lead{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--champagne);max-width:560px;margin:0 auto 32px;}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:18px;}
-  .hero-note{font-size:0.85rem;color:rgba(241,231,210,0.7);}
-  .hero-note strong{color:var(--gold-light);}
-
-  .hero-visual{position:relative;display:flex;justify-content:center;}
-  .hero-visual-card{
-    position:relative;width:100%;max-width:400px;
-    background:
-      radial-gradient(circle,rgba(255,255,255,0.16) 1.5px,transparent 1.5px) 0 0/22px 22px,
-      linear-gradient(150deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02));
-    border:1px solid rgba(255,255,255,0.16);
-    border-radius:var(--radius-lg);
-    padding:36px 30px 84px;
-    text-align:center;
-    backdrop-filter:blur(2px);
-  }
-  .hero-status-badge{
-    position:absolute;top:18px;right:18px;z-index:2;
-    display:inline-flex;align-items:center;gap:6px;
-    background:rgba(8,33,73,0.55);border:1px solid rgba(255,255,255,0.3);
-    color:var(--champagne);font-size:0.68rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
-    padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px);
-  }
-  .hero-status-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;box-shadow:0 0 0 3px rgba(254,195,56,0.25);}
-  .hero-visual-logo{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:120px;height:120px;border-radius:50%;background:#fff;
-    box-shadow:var(--shadow-lg);margin:0 auto 22px;padding:16px;
-  }
-  .hero-visual-logo img{width:100%;height:auto;}
-  .hero-pillars-badge{
-    display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;
-    font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;
-    color:var(--champagne);
-  }
-  .hero-pillars-badge span{padding:6px 12px;border:1px solid rgba(255,255,255,0.35);border-radius:999px;}
-  .hero-quote-card{
-    position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);
-    width:calc(100% - 24px);max-width:360px;
-    background:#fff;color:var(--navy);border-radius:var(--radius-md);
-    box-shadow:var(--shadow-lg);padding:20px 22px;text-align:left;
-  }
-  .hero-quote-card p{font-size:0.98rem;font-weight:600;line-height:1.5;}
-  .hero-quote-card span{display:block;margin-top:8px;font-size:0.76rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;}
-
-  /* Get Involved / Wayfinding */
-  .involve{padding:100px 0 76px;background:var(--ivory);}
-  .involve-grid{display:grid;grid-template-columns:1fr;gap:28px;}
-  @media(min-width:820px){.involve-grid{grid-template-columns:1fr 1fr;}}
-  .involve-card{
-    background:#fff;border:1px solid var(--champagne);border-radius:var(--radius-lg);
-    padding:40px 34px;box-shadow:var(--shadow-sm);
-    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-    display:flex;flex-direction:column;
-  }
-  .involve-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);}
-  .involve-icon{
-    width:60px;height:60px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
-  }
-  .involve-card.supporters .involve-icon{background:rgba(254,195,56,0.18);color:var(--orange);}
-  .involve-card.programs .involve-icon{background:rgba(44,105,177,0.14);color:var(--blue);}
-  .involve-card h3{font-size:1.35rem;margin-bottom:12px;}
-  .involve-card p{color:var(--muted);font-size:0.98rem;margin-bottom:24px;flex-grow:1;}
-
-  /* Impact stats */
-  .impact{padding:76px 0;background:var(--champagne);}
-  .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:8px;}
-  .impact-card{
-    background:#fff;border-radius:var(--radius-md);padding:32px 22px;text-align:center;
-    box-shadow:var(--shadow-sm);border-top:4px solid var(--gold);
-    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-  }
-  .impact-card:nth-child(2){border-top-color:var(--blue);}
-  .impact-card:nth-child(3){border-top-color:var(--orange);}
-  .impact-card:nth-child(4){border-top-color:var(--navy);}
-  .impact-card:hover{transform:translateY(-6px) scale(1.015);box-shadow:var(--shadow-md);}
-  .impact-icon{width:30px;height:30px;margin:0 auto 10px;color:var(--gold);}
-  .impact-card:nth-child(2) .impact-icon{color:var(--blue);}
-  .impact-card:nth-child(3) .impact-icon{color:var(--orange);}
-  .impact-card:nth-child(4) .impact-icon{color:var(--navy);}
-  .stat-number{display:block;font-size:clamp(2.1rem,5vw,3rem);font-weight:800;color:var(--navy);line-height:1;}
-  .stat-caption{display:block;margin-top:10px;font-size:0.88rem;color:var(--muted);font-weight:600;}
-  .impact-footnote{margin-top:32px;font-size:0.85rem;color:var(--muted);text-align:center;}
-
-  /* Pillars */
-  .pillars{padding:88px 0;background:var(--ivory);}
-  .pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;}
-  .pillar-card{
-    background:#fff;border:1px solid var(--champagne);
-    padding:38px 30px;border-radius:var(--radius-md);
-    border-top:3px solid var(--blue);
-    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-  }
-  .pillar-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
-  .pillar-num{
-    font-family:var(--font-base);font-size:0.85rem;color:var(--gold);
-    letter-spacing:0.1em;font-weight:700;margin-bottom:14px;display:block;
-  }
-  .pillar-card h3{font-size:1.3rem;margin-bottom:12px;}
-  .pillar-card p{color:var(--muted);font-size:0.96rem;}
-
-  /* Programs */
-  .programs{padding:88px 0;background:var(--champagne);}
-  .program-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:8px;}
-  .program-item{
-    background:var(--ivory);padding:26px 24px;border-radius:var(--radius-md);
-    border-left:4px solid var(--teal);
-    box-shadow:var(--shadow-sm);
-    transition:transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .program-item:hover{transform:translateY(-4px) translateX(2px);box-shadow:var(--shadow-md);border-color:var(--orange);}
-  .program-tag{
-    align-self:flex-start;background:rgba(44,105,177,0.1);color:var(--blue);
-    font-size:0.7rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
-    padding:4px 10px;border-radius:999px;
-  }
-  .program-item h3{font-size:1.05rem;color:var(--navy);font-weight:700;}
-  .program-item p{font-size:0.9rem;color:var(--muted);line-height:1.55;flex-grow:1;}
-  .program-link{font-size:0.82rem;font-weight:700;color:var(--orange);text-decoration:underline;text-underline-offset:3px;align-self:flex-start;}
-  .program-link:hover{color:var(--navy);}
-  .programs-cta{margin-top:36px;text-align:center;font-size:0.95rem;color:var(--muted);}
-  .programs-cta a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
-
-  /* Voices / testimonial */
-  .voices{padding:88px 0;background:var(--ivory);}
-  .voices-grid{display:grid;grid-template-columns:1fr;gap:28px;}
-  @media(min-width:820px){.voices-grid{grid-template-columns:1fr 1fr;}}
-  .voice-card{
-    border-radius:var(--radius-lg);padding:36px 32px;box-shadow:var(--shadow-sm);
-    display:flex;flex-direction:column;gap:18px;
-  }
-  .voice-card.founder-quote{background:var(--navy);color:#fff;}
-  .voice-card.founder-quote .voice-quote-mark{font-size:2.6rem;color:var(--gold);line-height:1;font-family:Georgia,serif;}
-  .voice-card.founder-quote p{font-size:1.1rem;line-height:1.6;color:var(--champagne);}
-  .voice-person{display:flex;align-items:center;gap:14px;margin-top:auto;}
-  .voice-person img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
-  .voice-person-name{font-weight:700;color:#fff;font-size:0.95rem;}
-  .voice-person-role{font-size:0.8rem;color:rgba(251,248,241,0.7);}
-  .voice-card.placeholder{
-    background:#fff;border:2px dashed var(--champagne);align-items:flex-start;justify-content:center;
-  }
-  .voice-card.placeholder .voice-quote-mark{font-size:2.6rem;color:var(--champagne);line-height:1;font-family:Georgia,serif;}
-  .voice-coming-badge{
-    display:inline-block;background:var(--champagne);color:var(--orange);
-    font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
-    padding:5px 12px;border-radius:999px;
-  }
-  .voice-card.placeholder p{color:var(--muted);font-size:0.98rem;}
-
-  /* Founder */
-  .founder{padding:92px 0;background:var(--champagne);}
-  .founder .wrap{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
-  @media(min-width:860px){.founder .wrap{grid-template-columns:280px 1fr;align-items:start;}}
-  .founder-photo{
-    width:220px;height:220px;border-radius:50%;
-    border:4px solid var(--blue);
-    margin:0 auto;
-    overflow:hidden;
-    box-shadow:var(--shadow-lg);
-  }
-  .founder-photo img{
-    width:100%;height:100%;object-fit:cover;display:block;
-  }
-  .founder-copy .eyebrow{color:var(--blue);}
-  .founder-copy h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:20px;}
-  .founder-copy p{font-size:1.02rem;color:var(--text);line-height:1.75;margin-bottom:18px;}
-  .founder-welcome{font-weight:700;color:var(--navy);font-size:1.15rem;}
-  .founder-signature{margin-top:28px;}
-  .founder-name{font-weight:700;color:var(--navy);font-family:var(--font-accent);font-size:1.7rem;}
-  .founder-title{color:var(--muted);font-size:0.9rem;}
-
-  /* Mission org facts */
-  .mission{background:var(--navy);color:var(--ivory);padding:88px 0;}
-  .mission .wrap{display:grid;grid-template-columns:1fr;gap:48px;}
-  @media(min-width:860px){.mission .wrap{grid-template-columns:1fr 1fr;align-items:center;}}
-  .mission h2{color:var(--ivory);font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:20px;}
-  .mission p{color:var(--champagne);font-size:1.02rem;}
-  .mission-figure{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(44,105,177,0.4);
-    padding:32px;border-radius:var(--radius-md);
-  }
-  .stat-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(44,105,177,0.25);}
-  .stat-row:last-child{border-bottom:none;}
-  .stat-label{color:var(--champagne);font-size:0.92rem;}
-  .stat-value{color:var(--gold);font-weight:700;font-family:var(--font-base);}
-
-  /* Leadership */
-  .leadership{padding:88px 0;background:#fff;}
-  .board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;margin-top:8px;}
-  .board-card{text-align:center;padding:18px 12px;border-radius:var(--radius-md);transition:transform .2s var(--ease), box-shadow .2s var(--ease);}
-  .board-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);}
-  .board-avatar{
-    width:76px;height:76px;border-radius:50%;background:var(--champagne);
-    margin:0 auto 14px;display:flex;align-items:center;justify-content:center;
-    color:var(--navy);font-family:var(--font-base);font-weight:700;font-size:1.1rem;
-    overflow:hidden;border:3px solid #fff;box-shadow:var(--shadow-sm);
-  }
-  .board-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-  .board-name{font-weight:700;font-size:0.96rem;color:var(--navy);}
-  .board-role{font-size:0.82rem;color:var(--muted);margin-top:2px;}
-
-  /* Trust / Status */
-  .trust{padding:56px 0;background:var(--teal);color:var(--ivory);}
-  .trust .wrap{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;}
-  .trust-copy{max-width:640px;}
-  .trust h3{color:var(--ivory);font-size:1.3rem;margin-bottom:10px;}
-  .trust p{color:rgba(251,248,241,0.9);font-size:0.95rem;}
-  .badge-row{display:flex;gap:12px;flex-wrap:wrap;}
-  .badge{
-    border:1px solid rgba(251,248,241,0.45);padding:9px 18px;border-radius:999px;
-    font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ivory);
-    font-weight:600;
-  }
-
-  /* Support / email capture */
-  .support{padding:104px 0;background:var(--navy-dark);color:var(--ivory);text-align:center;position:relative;overflow:hidden;}
-  .support::after{
-    content:"";position:absolute;right:-100px;bottom:-140px;width:380px;height:380px;border-radius:50%;
-    background:radial-gradient(circle,rgba(254,195,56,0.14) 0%,rgba(254,195,56,0) 70%);
-  }
-  .support .wrap{position:relative;z-index:1;}
-  .support h2{color:var(--ivory);font-size:clamp(1.8rem,3.5vw,2.5rem);margin-bottom:16px;}
-  .support > .wrap > p{color:var(--champagne);max-width:560px;margin:0 auto 36px;font-size:1.02rem;}
-  form.join-form{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:480px;margin:0 auto;}
-  form.join-form input[type="email"]{
-    flex:1;min-width:220px;padding:16px 18px;border-radius:var(--radius-sm);border:1px solid var(--champagne);
-    background:var(--ivory);color:var(--navy);font-size:0.95rem;transition:box-shadow .2s var(--ease);
-  }
-  form.join-form input[type="email"]:focus{outline:none;box-shadow:0 0 0 3px rgba(254,195,56,0.5);}
-  form.join-form input[type="email"].has-error{box-shadow:0 0 0 3px rgba(205,120,23,0.55);}
-  .form-error{
-    flex-basis:100%;display:none;color:var(--gold-light);font-size:0.82rem;font-weight:600;
-    text-align:left;margin-top:-4px;
-  }
-  .form-error.visible{display:block;}
-  .btn[disabled]{opacity:0.75;cursor:progress;pointer-events:none;}
-  .join-disclaimer{margin-top:18px;font-size:0.8rem;color:rgba(241,231,210,0.65);}
-
-  /* Footer */
-  footer{background:var(--navy-dark);color:rgba(251,248,241,0.7);padding:52px 0 32px;border-top:1px solid rgba(44,105,177,0.25);}
-  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;}
-  footer h4{color:var(--ivory);font-family:var(--font-base);font-size:1rem;margin-bottom:14px;}
-  footer p, footer a{font-size:0.85rem;color:rgba(251,248,241,0.6);}
-  footer a{transition:color .2s var(--ease);}
-  footer a:hover{color:var(--gold);}
-  footer p + p{margin-top:8px;}
-  .footer-bottom{
-    max-width:1160px;margin:36px auto 0;padding:20px 24px 0;
-    border-top:1px solid rgba(44,105,177,0.18);
-    font-size:0.78rem;color:rgba(251,248,241,0.45);
-    display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
-  }
-</style>
-</head>
-<body>
-<a href="#top" class="skip-link">Skip to content</a>
-
-<header>
-  <div class="wrap">
-    <a href="#top" class="logo-mark"><img src="assets/logo-blue.png" alt="My Sisters Global Alliance — Educate, Equip, Empower"></a>
-    <button type="button" class="mobile-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav aria-label="Primary" id="primaryNav">
-      <ul>
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="#programs">Programs</a></li>
-        <li><a href="#impact">Impact</a></li>
-        <li><a href="#founder">Founder</a></li>
-        <li><a href="#leadership">Leadership</a></li>
-        <li><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></li>
-        <li class="nav-btn-item"><a href="#programs" class="btn btn-ghost btn-sm">Find Programs</a></li>
-        <li class="nav-btn-item"><a href="#support" class="btn btn-gold btn-sm">Support Our Mission</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<script>
-  (function(){
-    var toggle = document.getElementById('navToggle');
-    var nav = document.getElementById('primaryNav');
-    if(!toggle || !nav) return;
-    toggle.addEventListener('click', function(){
-      var isOpen = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    nav.addEventListener('click', function(e){
-      if(e.target.tagName === 'A'){
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
-
-  // Newsletter signup: client-side validation only.
-  // Intentionally does NOT intercept/fake the actual submission or show a
-  // fabricated "success" message — this form posts to a real, live Brevo
-  // list (see form action), and Brevo's own hosted page confirms signup
-  // after a valid submit. Faking a success state here would risk making
-  // the button look like it works while silently dropping real signups.
-  (function(){
-    var form = document.querySelector('form.join-form');
-    if(!form) return;
-    var emailInput = document.getElementById('EMAIL');
-    var errorEl = document.getElementById('emailError');
-    var submitBtn = document.getElementById('joinSubmitBtn');
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    function showError(msg){
-      errorEl.textContent = msg;
-      errorEl.classList.add('visible');
-      emailInput.classList.add('has-error');
-    }
-    function clearError(){
-      errorEl.classList.remove('visible');
-      emailInput.classList.remove('has-error');
-    }
-
-    emailInput.addEventListener('input', clearError);
-
-    form.addEventListener('submit', function(e){
-      var value = (emailInput.value || '').trim();
-      if(!value){
-        e.preventDefault();
-        showError('Please enter your email address.');
-        emailInput.focus();
-        return;
-      }
-      if(!emailPattern.test(value)){
-        e.preventDefault();
-        showError('Please enter a valid email address.');
-        emailInput.focus();
-        return;
-      }
-      clearError();
-      // Valid: let the form submit normally to Brevo. Give the button a
-      // brief "in progress" state for feedback while the page navigates.
-      submitBtn.setAttribute('disabled', 'true');
-      submitBtn.textContent = 'Joining…';
-    });
-  })();
-</script>
-
-<main id="top">
-
+---
+layout: default
+permalink: /
+newsletter_script: true
+---
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow-row">
-            <span class="eyebrow">Georgia Nonprofit &middot; 501(c)(3) Application in Progress</span>
+            <span class="eyebrow">Georgia Nonprofit &middot; Federal Tax-Exempt Status in Progress</span>
           </div>
-          <h1>Educate. Equip. Empower.<br><em>Women and Girls</em> to Lead — Worldwide.</h1>
-          <p class="lead">My Sisters Global Alliance builds confident leaders through mentorship, leadership development, education access, and hands-on humanitarian outreach — starting in Georgia and reaching around the world.</p>
+          <h1>Educating, Equipping and Empowering Women and Girls —<br><em>Locally and Globally</em>.</h1>
+          <p class="lead">MySGA — My Sisters Global Alliance — builds confident leaders through mentorship, leadership development, education access, and hands-on humanitarian outreach — starting in Georgia and reaching around the world.</p>
           <div class="hero-actions">
-            <a href="#support" class="btn btn-gold">Support Our Mission</a>
-            <a href="#programs" class="btn btn-outline">Explore Our Programs</a>
+            <a href="#support" class="btn btn-gold">Join the Alliance</a>
+            <a href="{{ '/our-work/' | relative_url }}" class="btn btn-outline">See Our Work</a>
           </div>
-          <p class="hero-note">We're currently building our <strong>founding community</strong> ahead of our 501(c)(3) determination.</p>
+          <p class="hero-note">We're currently building our <strong>founding community</strong> as we work toward federal tax-exempt status.</p>
         </div>
         <div class="hero-visual">
           <div class="hero-visual-card">
-            <span class="hero-status-badge"><span class="dot"></span>501(c)(3) Pending</span>
+            <span class="hero-status-badge"><span class="dot"></span>Federal Tax-Exempt Status In Progress</span>
             <div class="hero-visual-logo">
-              <img src="assets/logo-blue.png" alt="My Sisters Global Alliance logo">
+              <img src="{{ '/assets/logo-blue.png' | relative_url }}" alt="My Sisters Global Alliance logo">
             </div>
             <div class="hero-pillars-badge">
               <span>Educate</span><span>Equip</span><span>Empower</span>
             </div>
             <div class="hero-quote-card">
               <p>&ldquo;You are safe here. You matter. You are not alone.&rdquo;</p>
-              <span>The MSGA Core Promise</span>
+              <span>The MySGA Core Promise</span>
             </div>
           </div>
         </div>
@@ -585,28 +43,64 @@
   <section class="involve" id="get-involved">
     <div class="wrap">
       <div class="section-head center">
-        <span class="eyebrow">Two Ways In</span>
+        <span class="eyebrow">Find Your Path</span>
         <div class="accent-bar"></div>
-        <h2>Find Your Path in the Alliance</h2>
-        <p>Whether you're here to fuel the mission or find your own community of support, there's a place for you.</p>
+        <h2>There's a Place for You at MySGA</h2>
+        <p>Whichever door you're walking through — seeking support, giving support, or standing beside us — here's where to start.</p>
       </div>
       <div class="involve-grid">
-        <div class="involve-card supporters">
-          <div class="involve-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"></path></svg>
-          </div>
-          <h3>For Supporters &amp; Donors</h3>
-          <p>Fuel our mission with your time, voice, or future giving. Join our founding community and be the first to know when giving opens.</p>
-          <a href="#support" class="btn btn-ghost btn-sm">Support Our Mission</a>
-        </div>
         <div class="involve-card programs">
           <div class="involve-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2Z"></path><path d="M22 6a2 2 0 0 0-2-2h-5a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22Z"></path></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2Z"></path><path d="M22 6a2 2 0 0 0-2-2h-5a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22Z"></path></svg>
           </div>
-          <h3>For Women &amp; Girls Seeking Programs</h3>
-          <p>Looking for mentorship, leadership development, or a community that believes in you? Explore the programs we're building right now.</p>
-          <a href="#programs" class="btn btn-ghost btn-sm">Explore Our Programs</a>
+          <h3>Women &amp; Girls Seeking Support</h3>
+          <p>Looking for mentorship, leadership development, or a community that believes in you? Explore the work we're building right now.</p>
+          <a href="{{ '/our-work/' | relative_url }}" class="btn btn-ghost btn-sm">See Our Work</a>
         </div>
+        <div class="involve-card supporters">
+          <div class="involve-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"></path></svg>
+          </div>
+          <h3>Donors &amp; Individual Supporters</h3>
+          <p>Fuel our mission with your voice or future giving. Join our founding community and be the first to know when giving opens.</p>
+          <a href="#support" class="btn btn-ghost btn-sm">Join the Alliance</a>
+        </div>
+        <div class="involve-card partners">
+          <div class="involve-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"></rect><path d="M8 7V5a4 4 0 0 1 8 0v2"></path></svg>
+          </div>
+          <h3>Corporate &amp; Community Partners</h3>
+          <p>Churches, businesses, and organizations aligned with our mission — we're building these partnerships from day one and would love to hear from you.</p>
+          <a href="{{ '/contact/' | relative_url }}" class="btn btn-ghost btn-sm">Start a Conversation</a>
+        </div>
+        <div class="involve-card volunteers">
+          <div class="involve-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3>Volunteers &amp; Future Leaders</h3>
+          <p>Want to lend your time, skills, or voice as we grow? We're shaping our volunteer structure now and want founding volunteers involved from the start.</p>
+          <a href="{{ '/contact/' | relative_url }}" class="btn btn-ghost btn-sm">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="legacy-teaser" id="legacy-teaser">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Before the Nonprofit</span>
+        <div class="accent-bar"></div>
+        <h2>A Legacy of Showing Up</h2>
+        <p>MySGA is a new nonprofit corporation — but the mission behind it isn't new. For years, this work has shown up one relationship at a time, through humanitarian outreach, crisis response, mentorship, and quiet, consistent support for women, families, and communities in need. MySGA is the structure now being built to sustain and expand that same spirit of service.</p>
+      </div>
+      <div class="legacy-badges">
+        <span class="program-tag">Humanitarian Outreach</span>
+        <span class="program-tag">Crisis Response</span>
+        <span class="program-tag">Mentorship</span>
+        <span class="program-tag">Community Support</span>
+      </div>
+      <div class="legacy-cta">
+        <a href="{{ '/about/#legacy' | relative_url }}" class="btn btn-ghost btn-sm">Read Our Story of Service</a>
       </div>
     </div>
   </section>
@@ -617,13 +111,13 @@
         <span class="eyebrow">Where We're Starting</span>
         <div class="accent-bar"></div>
         <h2>Building Our Foundation</h2>
-        <p>We're in our founding season. Here's the base we're building from — and we'll keep this section updated with real impact numbers as our programs launch.</p>
+        <p>We're in our founding season as a formal organization — though, as you just read, the mission goes back further. Here's the base we're building from today, and we'll keep this section updated with real impact numbers as our work grows.</p>
       </div>
       <div class="impact-grid">
         <div class="impact-card">
           <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
-          <span class="stat-number">2016</span>
-          <span class="stat-caption">Our Legacy Rooted In</span>
+          <span class="stat-number">2010</span>
+          <span class="stat-caption">Roots of Service and Community Support</span>
         </div>
         <div class="impact-card">
           <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18"></path></svg>
@@ -633,7 +127,7 @@
         <div class="impact-card">
           <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4"></path><path d="M9 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"></path><path d="M13 9h4M13 13h4M13 17h4"></path></svg>
           <span class="stat-number">7</span>
-          <span class="stat-caption">Programs in Development</span>
+          <span class="stat-caption">Work Areas in Development</span>
         </div>
         <div class="impact-card">
           <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -641,13 +135,13 @@
           <span class="stat-caption">Founding Board Members</span>
         </div>
       </div>
-      <p class="impact-footnote">These figures reflect where we stand today, not projected reach. As our programs go live, we'll add real numbers for women and girls served right in this section.</p>
+      <p class="impact-footnote">These figures reflect where we stand today, not projected reach. As our work goes live, we'll add real numbers for women and girls served right in this section.</p>
     </div>
   </section>
 
   <section class="pillars" id="pillars">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head center">
         <span class="eyebrow">Our Approach</span>
         <div class="accent-bar"></div>
         <h2>Three commitments, one alliance</h2>
@@ -672,65 +166,10 @@
     </div>
   </section>
 
-  <section class="programs" id="programs">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Where We Focus</span>
-        <div class="accent-bar"></div>
-        <h2>Programs built around real needs</h2>
-      </div>
-      <div class="program-list">
-        <div class="program-item">
-          <span class="program-tag">Pillar: Equip</span>
-          <h3>Leadership Development</h3>
-          <p>Training and coaching designed to build confident, capable leaders in every stage of life.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Leadership%20Development">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Equip</span>
-          <h3>Mentorship</h3>
-          <p>Connecting women and girls with trusted relationships that offer guidance, accountability, and encouragement.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Mentorship">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Educate</span>
-          <h3>Education Access</h3>
-          <p>Removing barriers to learning through resources, scholarships pathways, and academic support.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Education%20Access">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Empower</span>
-          <h3>Humanitarian Outreach</h3>
-          <p>Disaster relief, poverty alleviation, and hands-on support for families in crisis, at home and abroad.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Humanitarian%20Outreach">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Empower</span>
-          <h3>Community Engagement</h3>
-          <p>Building local circles of support so no woman has to face life's hardest moments alone.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Community%20Engagement">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Equip</span>
-          <h3>Workforce Development</h3>
-          <p>Career readiness, job skills, and financial capability training to build sustainable futures.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Workforce%20Development">Ask about this &rarr;</a>
-        </div>
-        <div class="program-item">
-          <span class="program-tag">Pillar: Empower</span>
-          <h3>Advocacy Initiatives</h3>
-          <p>Amplifying the voices of women and girls and equipping them to advocate for themselves and each other.</p>
-          <a class="program-link" href="mailto:info@mysistersglobal.org?subject=Interested%20in%20Advocacy%20Initiatives">Ask about this &rarr;</a>
-        </div>
-      </div>
-      <p class="programs-cta">Not sure where to start, or want to be connected as programs launch? <a href="mailto:info@mysistersglobal.org">Reach out to our team</a>.</p>
-    </div>
-  </section>
-
   <section class="voices" id="voices">
     <div class="wrap">
       <div class="section-head center">
-        <span class="eyebrow">Voices of the Alliance</span>
+        <span class="eyebrow">Voices of MySGA</span>
         <div class="accent-bar"></div>
         <h2>In Their Own Words</h2>
       </div>
@@ -739,7 +178,7 @@
           <span class="voice-quote-mark" aria-hidden="true">&ldquo;</span>
           <p>My vision is simple: to build a global alliance where women know they are never alone — no matter where they are in the world.</p>
           <div class="voice-person">
-            <img src="assets/founder-blue.jpg" alt="Romona Armon">
+            <img src="{{ '/assets/founder-blue.jpg' | relative_url }}" alt="Romona Armon">
             <div>
               <div class="voice-person-name">Romona Armon</div>
               <div class="voice-person-role">Founder &amp; CEO, My Sisters Global Alliance</div>
@@ -749,118 +188,16 @@
         <div class="voice-card placeholder">
           <span class="voice-quote-mark" aria-hidden="true">&ldquo;</span>
           <span class="voice-coming-badge">Coming Soon</span>
-          <p>As our programs launch, this is where you'll hear directly from the women and girls we serve — in their own words, real stories from the Alliance.</p>
+          <p>As our work launches, this is where you'll hear directly from the women and girls we serve — in their own words, real stories from MySGA.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="founder" id="founder">
-    <div class="wrap">
-      <div class="founder-photo"><img src="assets/founder-blue.jpg" alt="Romona Armon, Founder, President &amp; CEO of My Sisters Global Alliance"></div>
-      <div class="founder-copy">
-        <span class="eyebrow">A Letter From Our Founder</span>
-        <div class="accent-bar"></div>
-        <h2>Welcome to the Alliance</h2>
-        <p>My name is Romona Armon, and I am the Founder &amp; CEO of My Sisters Global Alliance.</p>
-        <p>For many years, I have had the privilege of walking alongside women and girls during some of life's most difficult and most meaningful moments. I've learned that sometimes what changes a life isn't just a program&mdash;it's knowing that someone truly cares and is willing to show up.</p>
-        <p>That belief is what inspired My Sisters Global Alliance.</p>
-        <p>Our mission is to educate, equip, and empower women and girls by providing leadership development, mentorship, practical resources, community support, advocacy, and opportunities that create lasting impact.</p>
-        <p>My vision is simple: to build a global alliance where women know they are never alone. No matter where they are in the world, they have a community that believes in them, stands beside them, and is committed to helping them thrive.</p>
-        <p>Thank you for joining us as we begin this journey together.</p>
-        <p class="founder-welcome">Welcome to the Alliance.</p>
-        <div class="founder-signature">
-          <p class="founder-name">Romona Armon</p>
-          <p class="founder-title">Founder &amp; CEO, My Sisters Global Alliance</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="mission" id="mission">
-    <div class="wrap">
-      <div>
-        <span class="eyebrow">Our Mission</span>
-        <div class="accent-bar"></div>
-        <h2>Organized to educate, equip, and empower.</h2>
-        <p>To educate, equip, and empower women and girls by providing preventative education, leadership development, humanitarian support, and meaningful connections that strengthen individuals, families, and communities around the world.</p>
-      </div>
-      <div class="mission-figure">
-        <div class="stat-row">
-          <span class="stat-label">Organized in</span>
-          <span class="stat-value">Georgia</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Structure</span>
-          <span class="stat-value">Nonprofit Corporation</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Tax-Exempt Status</span>
-          <span class="stat-value">501(c)(3) In Progress</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Reach</span>
-          <span class="stat-value">Local &middot; National &middot; Global</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="leadership" id="leadership">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Governance</span>
-        <div class="accent-bar"></div>
-        <h2>Led by a committed board</h2>
-      </div>
-      <div class="board-grid">
-        <div class="board-card">
-          <div class="board-avatar">RA</div>
-          <div class="board-name">Romona Armon</div>
-          <div class="board-role">Founder, President &amp; CEO</div>
-        </div>
-        <div class="board-card">
-          <div class="board-avatar">SL</div>
-          <div class="board-name">Shelia Lowe</div>
-          <div class="board-role">Vice President</div>
-        </div>
-        <div class="board-card">
-          <div class="board-avatar"><img src="assets/jaina.jpg" alt="Jaina Washington"></div>
-          <div class="board-name">Jaina Washington</div>
-          <div class="board-role">Chief Operating Officer</div>
-        </div>
-        <div class="board-card">
-          <div class="board-avatar"><img src="assets/lachey.jpg" alt="LaChey Pendleton"></div>
-          <div class="board-name">LaChey Pendleton</div>
-          <div class="board-role">Chief Financial Officer</div>
-        </div>
-        <div class="board-card">
-          <div class="board-avatar">NY</div>
-          <div class="board-name">Nylia Young</div>
-          <div class="board-role">Secretary</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="trust">
-    <div class="wrap">
-      <div class="trust-copy">
-        <h3>Built for accountability from day one</h3>
-        <p>Formed under the Georgia Nonprofit Corporation Code with adopted bylaws, a conflict-of-interest policy, and an active board. Our 501(c)(3) federal determination is in progress with the IRS.</p>
-      </div>
-      <div class="badge-row">
-        <span class="badge">Georgia Incorporated</span>
-        <span class="badge">Board Governed</span>
-        <span class="badge">501(c)(3) Pending</span>
       </div>
     </div>
   </section>
 
   <section class="support" id="support">
     <div class="wrap">
-      <h2>Support Our Mission</h2>
-      <p>Be part of our founding community. We'll send occasional updates on our programs, our 501(c)(3) progress, and how you'll be able to get involved as we grow.</p>
+      <h2>Join the Alliance</h2>
+      <p>Be part of our founding community. We'll send occasional updates on our work, our federal tax-exempt status progress, and how you'll be able to get involved as we grow.</p>
       <form class="join-form" action="https://010358a6.sibforms.com/serve/MUIFAFCvTWm0oBS8esVmNOSDlYlNRyazc4vAMdSwe3n7t2Dzoi2fDwtbjbRTuZ5_jSltEl6xpi_X4lW-is5yrOlQ7pXVoyKnjSiz6t4T89GQf1pi4_OTFNw2s8Ry9Ljnu-kOV9V6pPmyNflTzi7dm22QKo1eocEPAW0wZpW_CbcCz_VLFJPlDK3jxDIj_m6DyHQdVOlCVnf3Xsw5Og==" method="POST" data-type="subscription">
         <label class="sr-only" for="EMAIL">Email address</label>
         <input class="input" type="email" id="EMAIL" name="EMAIL" placeholder="you@email.com" autocomplete="off" required>
@@ -869,36 +206,6 @@
         <input type="hidden" name="locale" value="en">
         <button type="submit" class="btn btn-gold" id="joinSubmitBtn">Join the Alliance</button>
       </form>
-      <p class="join-disclaimer">We do not currently accept donations while our 501(c)(3) determination is pending. No spam — unsubscribe anytime.</p>
+      <p class="join-disclaimer">We do not currently accept donations while our federal tax-exempt status is in progress. No spam — unsubscribe anytime.</p>
     </div>
   </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div>
-      <h4>My Sisters Global Alliance, Inc.</h4>
-      <p>A Georgia nonprofit corporation</p>
-    </div>
-    <div>
-      <h4>Explore</h4>
-      <p><a href="#mission">Mission</a></p>
-      <p><a href="#programs">Programs</a></p>
-      <p><a href="#impact">Impact</a></p>
-      <p><a href="#leadership">Leadership</a></p>
-      <p><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></p>
-    </div>
-    <div>
-      <h4>Connect</h4>
-      <p><a href="mailto:info@mysistersglobal.org">info@mysistersglobal.org</a></p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 My Sisters Global Alliance, Inc. All rights reserved.</span>
-    <span>A Georgia nonprofit corporation &middot; 501(c)(3) application in progress</span>
-  </div>
-</footer>
-
-</body>
-</html>
