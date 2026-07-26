@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+</head>
+<body>
+<a href="#top" class="skip-link">Skip to content</a>
+
+{% include header.html %}
+{% include nav-script.html %}
+
+<main id="top">
+{{ content }}
+</main>
+
+{% include footer.html %}
+{% if page.newsletter_script %}{% include newsletter-script.html %}{% endif %}
+
+</body>
+</html>
