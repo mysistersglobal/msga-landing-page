@@ -1,0 +1,49 @@
+<script>
+  // Newsletter signup: client-side validation only.
+  // Intentionally does NOT intercept/fake the actual submission or show a
+  // fabricated "success" message — this form posts to a real, live Brevo
+  // list (see form action), and Brevo's own hosted page confirms signup
+  // after a valid submit. Faking a success state here would risk making
+  // the button look like it works while silently dropping real signups.
+  (function(){
+    var form = document.querySelector('form.join-form');
+    if(!form) return;
+    var emailInput = document.getElementById('EMAIL');
+    var errorEl = document.getElementById('emailError');
+    var submitBtn = document.getElementById('joinSubmitBtn');
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function showError(msg){
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+      emailInput.classList.add('has-error');
+    }
+    function clearError(){
+      errorEl.classList.remove('visible');
+      emailInput.classList.remove('has-error');
+    }
+
+    emailInput.addEventListener('input', clearError);
+
+    form.addEventListener('submit', function(e){
+      var value = (emailInput.value || '').trim();
+      if(!value){
+        e.preventDefault();
+        showError('Please enter your email address.');
+        emailInput.focus();
+        return;
+      }
+      if(!emailPattern.test(value)){
+        e.preventDefault();
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+      clearError();
+      // Valid: let the form submit normally to Brevo. Give the button a
+      // brief "in progress" state for feedback while the page navigates.
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.textContent = 'Joining…';
+    });
+  })();
+</script>
