@@ -155,6 +155,8 @@
     font-weight:700;
   }
   .section-head .eyebrow{color:var(--blue);}
+  /* Brand name must never be forced to all-caps by an uppercase eyebrow/label context */
+  .brand-case{text-transform:none;}
   .accent-bar{width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--orange));margin:14px 0 18px;}
   .section-head.center .accent-bar{margin-left:auto;margin-right:auto;}
   .section-head h2{font-size:clamp(1.7rem,3vw,2.4rem);}
