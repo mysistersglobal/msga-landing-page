@@ -1,0 +1,18 @@
+<header>
+  <div class="wrap">
+    <a href="{{ '/' | relative_url }}" class="logo-mark"><img src="{{ '/assets/logo-blue.png' | relative_url }}" alt="MySGA — My Sisters Global Alliance — Educate, Equip, Empower"></a>
+    <button type="button" class="mobile-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Primary" id="primaryNav">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>Home</a></li>
+        <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active" aria-current="page"{% endif %}>About</a></li>
+        <li><a href="{{ '/our-work/' | relative_url }}" {% if page.url == '/our-work/' %}class="active" aria-current="page"{% endif %}>Our Work</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}" {% if page.url == '/contact/' %}class="active" aria-current="page"{% endif %}>Contact</a></li>
+        <li><a href="https://chozensolutions.com/collections/my-sisters-global-alliance" target="_blank" rel="noopener">Wear the Movement</a></li>
+        <li class="nav-btn-item"><a href="{{ '/#support' | relative_url }}" class="btn btn-gold btn-sm">Join the Alliance</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
