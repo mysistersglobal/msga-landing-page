@@ -27,9 +27,9 @@ var el = document.getElementById(hash.replace('#',''));
 if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 if(window.location.hash){
-window.addEventListener('load', function(){
-setTimeout(function(){ scrollToHash(window.location.hash); }, 50);
-});
+function triggerScroll(){ setTimeout(function(){ scrollToHash(window.location.hash); }, 50); }
+if(document.readyState === 'complete'){ triggerScroll(); }
+else { window.addEventListener('load', triggerScroll); }
 }
 document.addEventListener('click', function(e){
 var a = e.target.closest('a[href*="#"]');
