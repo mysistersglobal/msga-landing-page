@@ -1,17 +1,44 @@
 <script>
-  (function(){
-    var toggle = document.getElementById('navToggle');
-    var nav = document.getElementById('primaryNav');
-    if(!toggle || !nav) return;
-    toggle.addEventListener('click', function(){
-      var isOpen = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    nav.addEventListener('click', function(e){
-      if(e.target.tagName === 'A'){
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
+(function(){
+var toggle = document.getElementById('navToggle');
+var nav = document.getElementById('primaryNav');
+if(!toggle || !nav) return;
+toggle.addEventListener('click', function(){
+var isOpen = nav.classList.toggle('open');
+toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+nav.addEventListener('click', function(e){
+if(e.target.tagName === 'A'){
+nav.classList.remove('open');
+toggle.setAttribute('aria-expanded', 'false');
+}
+});
+})();
+
+/* Fix: html{scroll-behavior:smooth} can prevent the browser's native
+   scroll-to-fragment from running on initial page load (e.g. a direct
+   or cross-page link to /#support or /about/#legacy), and delays same-page
+   anchor clicks by 1-2s before they start moving. This restores reliable,
+   immediate scrolling to the target section in both cases. */
+(function(){
+function scrollToHash(hash){
+if(!hash) return;
+var el = document.getElementById(hash.replace('#',''));
+if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+if(window.location.hash){
+window.addEventListener('load', function(){
+setTimeout(function(){ scrollToHash(window.location.hash); }, 50);
+});
+}
+document.addEventListener('click', function(e){
+var a = e.target.closest('a[href*="#"]');
+if(!a) return;
+var url;
+try { url = new URL(a.href, window.location.href); } catch(err){ return; }
+if(url.pathname === window.location.pathname && url.hash){
+setTimeout(function(){ scrollToHash(url.hash); }, 0);
+}
+});
+})();
 </script>
