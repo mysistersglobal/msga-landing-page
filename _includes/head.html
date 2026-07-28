@@ -5,13 +5,17 @@
 <meta name="theme-color" content="#083E7D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Petit+Formal+Script&display=swap" rel="stylesheet">
 <style>
 /*
 Brand palette + type sourced from the official
 "My Sisters Global Alliance Style Guide" (SinVista Creations).
 Colors: #cd7817 / #2c69b1 / #083e7d / #fec338 / #082149
 Fonts: Montserrat Bold (headings/UI), Al Fresco (signature accent - licensed, see note below).
+Note: Petit Formal Script (Google Fonts, free) is used as a temporary stand-in
+for the licensed Al Fresco accent font on the homepage hero headline only,
+pending purchase of an Al Fresco web-font license. Swap --font-accent-hero
+to Al Fresco once licensed.
 */
 :root{
 --navy:#083E7D;
@@ -27,6 +31,7 @@ Fonts: Montserrat Bold (headings/UI), Al Fresco (signature accent - licensed, se
 --muted:#4B5563;
 --font-base:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;
 --font-accent:'Al Fresco','Brush Script MT',cursive;
+--font-accent-hero:'Petit Formal Script','Al Fresco','Brush Script MT',cursive;
 --radius-sm:6px;
 --radius-md:12px;
 --radius-lg:24px;
@@ -165,7 +170,42 @@ font-weight:700;
 .wave-divider{display:block;width:100%;height:64px;margin-top:-2px;}
 .wave-divider svg{display:block;width:100%;height:100%;}
 
-/* Hero (Home) */
+/* ================================================================
+   Homepage Hero — approved redesign (Sterling brief, Romona-approved)
+   Two-column, full-bleed photo on the right, status bar above,
+   script accent on "Women and Girls". Scoped to .hero-v3 only —
+   does not affect .page-hero (About / Our Work / Contact headers).
+   ================================================================ */
+.hero-status-bar{background:#05142f;padding:10px 0;}
+.hero-status-inner{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;font-size:0.76rem;}
+.status-left{color:var(--gold);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;}
+.status-left svg{flex:none;}
+.status-divider{color:rgba(255,255,255,0.28);}
+.status-right{color:rgba(255,255,255,0.82);font-weight:500;}
+@media(max-width:640px){.status-divider{display:none;}.status-right{width:100%;}}
+
+.hero-v3{background:linear-gradient(160deg,var(--navy-dark) 0%,#04101f 100%);color:#fff;position:relative;overflow:hidden;}
+.hero-v3-row{display:flex;flex-wrap:wrap;align-items:stretch;}
+.hero-v3-text{flex:1 1 460px;max-width:600px;padding:56px 24px 56px max(24px, calc((100vw - 1160px)/2 + 24px));display:flex;flex-direction:column;justify-content:center;}
+.hero-v3-image-col{flex:1 1 420px;position:relative;min-height:360px;}
+.hero-v3-image-col img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;}
+.hero-v3 h1{font-weight:800;color:#fff;line-height:1.16;font-size:clamp(1.85rem,3.2vw,2.5rem);margin-bottom:2px;letter-spacing:-0.01em;}
+.headline-script{display:block;font-family:var(--font-accent-hero);font-weight:400;color:var(--gold);font-size:clamp(1.9rem,3vw,2.5rem);line-height:1.2;margin-bottom:18px;white-space:nowrap;}
+@media(max-width:520px){.headline-script{white-space:normal;}}
+.hero-v3 p.lead{font-size:clamp(1rem,1.5vw,1.1rem);color:var(--champagne);max-width:500px;margin-bottom:28px;opacity:0.95;}
+.hero-v3-actions{display:flex;flex-wrap:wrap;gap:14px;}
+
+@media(max-width:959px){
+.hero-v3-row{flex-direction:column;}
+.hero-v3-text{order:1;max-width:none;padding:36px 24px 32px;}
+.hero-v3-image-col{order:2;min-height:320px;}
+.hero-v3-actions{flex-direction:column;}
+.hero-v3-actions .btn{width:100%;}
+}
+
+/* Legacy Hero (Home) rules — no longer referenced by index.html now that
+   the hero uses .hero-v3 above, kept only in case any other template
+   still points at .hero / .hero-visual-card. Safe to remove later. */
 .hero{
 background:linear-gradient(160deg,var(--navy) 0%,var(--navy-dark) 100%);
 color:var(--ivory);
